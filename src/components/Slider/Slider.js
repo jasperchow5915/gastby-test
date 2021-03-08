@@ -24,7 +24,6 @@ const Slider = props => {
         width={getWidth() * props.slides.length}
       >
         {props.slides.map((slide, i) => {
-          console.log("slide", slide)
           return(
           <Slide key={i} content={slide} />
         )})}

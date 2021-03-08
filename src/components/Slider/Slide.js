@@ -2,11 +2,10 @@
 import { css, jsx } from "@emotion/react"
 
 const Slide = ({ content }) => {
-  console.log("content", content)
   return(
   <div
     css={css`
-      height: 100;
+      height: 948px;
       width: 100%;
       background-image: url("${content}");
       background-size: cover;
