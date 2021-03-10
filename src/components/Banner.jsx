@@ -68,6 +68,9 @@ const BannerContentWrapper = styled.div`
   position: absolute;
   top: 224px;
   left: 16%;
+  @media (max-width: 1200px) {
+    left: 10px;
+  }
 `
 
 const Banner = (props) => {
@@ -78,7 +81,7 @@ const Banner = (props) => {
         <div className="banner-content-container">
           <div className="row">
             <BannerTextWrapper className="banner-text">
-              {"two stunning new townhome releases launching early 2021"}
+              {props.bannerText}
             </BannerTextWrapper>
             <FormOutterWrapper>
               <FormInnerWrapper>
