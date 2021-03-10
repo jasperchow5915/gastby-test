@@ -8,11 +8,11 @@ import Banner from "../components/Banner"
 
 
 
-const IndexPage = () => (
+const LandingPage = () => (
   <Layout>
     <SEO title="Home" />
     <Banner images={images} bannerText="two stunning new townhome releases launching early 2021" />
   </Layout>
 )
 
-export default IndexPage
+export default LandingPage
