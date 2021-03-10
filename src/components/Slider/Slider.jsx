@@ -8,6 +8,7 @@ import Slide from "./Slide"
 import SignUpForm from "../Form/SignUpForm"
 import "./style.scss"
 import { useWindowSize } from "../../utlis/hooks/useWindowSize"
+import Arrow from "./Arrow"
 
 export const BannerTextWrapper = styled.div`
   position: relative;
@@ -72,25 +73,73 @@ export const innerFormCss = css`
   top: 40px;
 `
 
+const ArrowWrapper = styled.div`
+  top: 82%;
+  position: absolute;
+  left: 16.67%;
+  display: flex;
+`
+
 /**
  * @function Slider
  */
 const Slider = (props) => {
-  const getWidth = () => useWindowSize().width
+  const width = useWindowSize().width
 
-  const [state] = useState({
+  const [state, setState] = useState({
+    activeIndex: 0,
     translate: 0,
     transition: 0.45,
+    opacity: 1,
+    visible: true,
   })
 
-  const { translate, transition } = state
+  const { translate, transition, activeIndex, opacity, visible } = state
+
+  const nextSlide = () => {
+    if (activeIndex === props.slides.length - 1) {
+      return setState({
+        ...state,
+        translate: 0,
+        activeIndex: 0,
+        visible: false,
+      })
+    }
+
+    setState({
+      ...state,
+      activeIndex: activeIndex + 1,
+      translate: (activeIndex + 1) * width,
+      visible: true,
+    })
+  }
+
+  const prevSlide = () => {
+    if (activeIndex === 0) {
+      return setState({
+        ...state,
+        translate: (props.slides.length - 1) * width,
+        activeIndex: props.slides.length - 1,
+        visible: false,
+      })
+    }
+
+    setState({
+      ...state,
+      activeIndex: activeIndex - 1,
+      translate: (activeIndex - 1) * width,
+      visible: true,
+    })
+  }
 
   return (
     <div css={SliderCSS}>
       <SliderContent
         translate={translate}
+        opacity={opacity}
         transition={transition}
-        width={getWidth() * props.slides.length}
+        width={width * props.slides.length}
+        className={visible ? "fadeIn" : "fadeOut"}
       >
         {props.slides.map((slide, i) => {
           return (
@@ -111,6 +160,10 @@ const Slider = (props) => {
           )
         })}
       </SliderContent>
+      <ArrowWrapper>
+        <Arrow direction="left" handleClick={prevSlide} />
+        <Arrow direction="right" handleClick={nextSlide} />
+      </ArrowWrapper>
     </div>
   )
 }

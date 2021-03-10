@@ -11,6 +11,7 @@ const Slide = ({ content, children }) => {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+        transition: background-image 1s ease;
       `}
     >
       {children}

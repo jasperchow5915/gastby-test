@@ -599,3 +599,13 @@ pre tt:after {
 .react-datepicker-wrapper {
   width: 100%;
 }
+
+.fadeIn {
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.fadeOut {
+  -webkit-animation: fade-out 1s ease-out both;
+  animation: fade-out 1s ease-out both;
+}
