@@ -48,7 +48,7 @@ export const FormInnerWrapper = styled.div`
   background: #ffffff;
   border-radius: 4px;
   z-index: 10;
-  padding: 40px 40px 16px 40px;
+  padding: 40px 40px 1px 40px;
 `
 
 export const innerFormCss = css`

@@ -16,6 +16,9 @@ const ArrowWrapper = styled.div`
   left: 16.67%;
   display: flex;
   z-index: 99;
+  @media (max-width: 1200px) {
+    left: 25px;
+  }
 `
 
 /**
@@ -111,7 +114,7 @@ Slider.defaultProps = {
 
 const SliderCSS = css`
   position: relative;
-  height: 100vh;
+  height: auto;
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
