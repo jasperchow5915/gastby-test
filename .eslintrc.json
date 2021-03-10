@@ -1,19 +1,28 @@
 {
-  "extends": [
-    "plugin:react/recommended",
-    "standard",
-    "plugin:prettier/recommended"
-  ],
-  "plugins": ["react"],
-  "env": {
-    "browser": true
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "browser": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard",
+        "eslint:recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2020
+    },
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "rules": {
+        "react/react-in-jsx-scope": 0,
+        "no-console": "error"
     }
-  },
-  "rules": {
-    "react/react-in-jsx-scope": 0
-  }
 }
