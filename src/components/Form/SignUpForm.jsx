@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react"
-import { Formik, Field, Form } from "formik"
+import { Formik, Field, Form, getIn, ErrorMessage } from "formik"
 import styled from "@emotion/styled"
 import { checkboxOptions } from "./constant"
 import DatePickerField from "./DatePickerField"
 import { SignUpSchema } from "./validation"
 import "react-datepicker/dist/react-datepicker.css"
+import { useState, useEffect } from "react"
 
 const FormHeader = styled.div`
   position: static;
@@ -43,6 +44,9 @@ const formFieldCss = css`
   line-height: 26px;
   letter-spacing: 0.07px;
   color: #292f2d;
+  &.error {
+    border: 1px solid red;
+  }
 `
 
 const headerInnerCss = css`
@@ -87,82 +91,116 @@ const ButtonsWrapper = styled.div`
   margin-top: 16px;
 `
 
-const SignUpForm = (props) => (
-  <div css={props.css}>
-    <FormHeader>
-      <p css={headerInnerCss}>
-        Be thte first to register for new townhome releases for first option
-      </p>
-    </FormHeader>
-    <Formik
-      initialValues={{
-        firstName: "",
-        lastName: "",
-        email: "",
-      }}
-      validationSchema={SignUpSchema}
-      onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 500))
-        alert(JSON.stringify(values, null, 2))
-      }}
-    >
-      {({ isSubmitting, getFieldProps, handleChange, handleBlur, values }) => (
-        <Form>
-          <Field
-            className="form-field"
-            id="firstName"
-            name="firstName"
-            placeholder="First Name*"
-            css={formFieldCss}
-          />
-          <Field
-            className="form-field"
-            id="lastName"
-            name="lastName"
-            placeholder="Last Name*"
-            css={formFieldCss}
-          />
-          <Field
-            className="form-field"
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Email*"
-            css={formFieldCss}
-          />
-          <DatePickerField
-            className="form-field"
-            name="buyDate"
-            placeholderText="When are you looking to buy"
-            css={formFieldCss}
-          />
-          <div className="custom-check-box-field">
-            {checkboxOptions.map((op, i) => (
-              <label css={checkboxLabelCss}>
-                <Field
-                  key={i}
-                  type="checkbox"
-                  name="customCheckBoxField"
-                  value={op.value}
-                  css={checkboxFieldCss}
-                />
-                {op.label}
-              </label>
-            ))}
-          </div>
-          <ButtonsWrapper>
-            <button type="submit" css={submitBTNCss}>
-              SUBMIT
-            </button>
-            <button type="reset" css={resetBTNCss}>
-              RESET
-            </button>
-          </ButtonsWrapper>
-        </Form>
-      )}
-    </Formik>
-  </div>
-)
+const SignUpForm = (props) => {
+  return (
+    <div css={props.css}>
+      <FormHeader>
+        <p css={headerInnerCss}>
+          Be thte first to register for new townhome releases for first option
+        </p>
+      </FormHeader>
+      <Formik
+        initialValues={{
+          firstName: "",
+          lastName: "",
+          email: "",
+          buyDate: "",
+          services: [],
+        }}
+        validationSchema={SignUpSchema}
+        onSubmit={async (values) => {
+          await new Promise((r) => setTimeout(r, 500))
+          alert(JSON.stringify(values, null, 2))
+        }}
+      >
+        {({
+          isSubmitting,
+          getFieldProps,
+          handleChange,
+          handleBlur,
+          values,
+          errors,
+          touched,
+        }) => {
+          console.log("values", values)
+          console.log("values ser", values.services)
+          console.log("can", canSubmit)
+          console.log("errors", errors)
+          const [canSubmit, setCanSubmit] = useState(false)
+          if (!getIn(errors, "services") && !canSubmit) {
+            setCanSubmit(true)
+          } else if (getIn(errors, "services") && canSubmit) {
+            setCanSubmit(false)
+          }
+          return (
+            <Form>
+              <Field
+                className={`form-field ${getIn(errors, "firstName") ? "error" : ""}`}
+                id="firstName"
+                name="firstName"
+                placeholder="First Name*"
+                css={formFieldCss}
+              />
+              <Field
+                className={`form-field ${getIn(errors, "lastName") ? "error" : ""}`}
+                id="lastName"
+                name="lastName"
+                placeholder="Last Name*"
+                css={formFieldCss}
+              />
+              <Field
+                className={`form-field ${getIn(errors, "email") ? "error" : ""}`}
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Email*"
+                css={formFieldCss}
+              />
+              <DatePickerField
+                className="form-field"
+                name="buyDate"
+                placeholderText="When are you looking to buy"
+                css={formFieldCss}
+              />
+              <div className="custom-check-box-field">
+                {checkboxOptions.map((op, i) => (
+                  <label css={checkboxLabelCss}>
+                    <Field
+                      key={i}
+                      type="checkbox"
+                      name="services"
+                      value={op.value}
+                      css={checkboxFieldCss}
+                    />
+                    {op.label}
+                  </label>
+                ))}
+              </div>
+              {errors?.services ? (
+                <div
+                  css={css`
+                    font-size: 15px;
+                    color: red;
+                  `}
+                >
+                  {errors?.services}
+                </div>
+              ) : null}
+              <ButtonsWrapper>
+                <button disabled={!canSubmit} type="submit" css={submitBTNCss}>
+                  SUBMIT
+                </button>
+                <button type="reset" css={resetBTNCss}>
+                  RESET
+                </button>
+              </ButtonsWrapper>
+            </Form>
+          )
+        }}
+      </Formik>
+    </div>
+  )
+}
 
 export default SignUpForm
 
@@ -180,6 +218,14 @@ const submitBTNCss = css`
   line-height: 26px;
   color: #333333;
   cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  &:disabled,
+  &[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+  }
 `
 const resetBTNCss = css`
   width: 49%;

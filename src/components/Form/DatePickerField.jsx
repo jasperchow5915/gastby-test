@@ -10,7 +10,7 @@ const ArrowWrapper = styled.div`
   background: none;
   position: absolute;
   top: 0px;
-  right: 6px;
+  right: 15px;
 `
 
 const DatePickerWrapper = styled.div`
