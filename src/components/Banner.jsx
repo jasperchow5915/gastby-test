@@ -6,7 +6,7 @@ import Slider from "./Slider/Slider"
 const Banner = (props) => {
   return (
     <div>
-      <Slider slides={props.images} />
+      <Slider slides={props.images} autoPlay={2} />
     </div>
   )
 }

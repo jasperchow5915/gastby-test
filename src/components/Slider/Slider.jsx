@@ -2,7 +2,7 @@
 import { css, jsx } from "@emotion/react"
 
 import styled from "@emotion/styled"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import SliderContent from "./SliderContent"
 import Slide from "./Slide"
 import SignUpForm from "../Form/SignUpForm"
@@ -126,6 +126,21 @@ const Slider = (props) => {
     })
   }
 
+  const autoPlayRef = useRef()
+
+  useEffect(() => {
+    autoPlayRef.current = nextSlide
+  })
+
+  useEffect(() => {
+    const play = () => {
+      autoPlayRef.current()
+    }
+
+    const interval = setInterval(play, props.autoPlay * 1000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div css={SliderCSS}>
       <SliderContent
@@ -162,6 +177,11 @@ const Slider = (props) => {
       </ArrowWrapper>
     </div>
   )
+}
+
+Slider.defaultProps = {
+  slides: [],
+  autoPlay: null,
 }
 
 const SliderCSS = css`
