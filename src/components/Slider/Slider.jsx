@@ -90,11 +90,9 @@ const Slider = (props) => {
     activeIndex: 0,
     translate: 0,
     transition: 0.45,
-    opacity: 1,
-    visible: true,
   })
 
-  const { translate, transition, activeIndex, opacity, visible } = state
+  const { translate, transition, activeIndex } = state
 
   const nextSlide = () => {
     if (activeIndex === props.slides.length - 1) {
@@ -102,7 +100,6 @@ const Slider = (props) => {
         ...state,
         translate: 0,
         activeIndex: 0,
-        visible: false,
       })
     }
 
@@ -110,7 +107,6 @@ const Slider = (props) => {
       ...state,
       activeIndex: activeIndex + 1,
       translate: (activeIndex + 1) * width,
-      visible: true,
     })
   }
 
@@ -120,7 +116,6 @@ const Slider = (props) => {
         ...state,
         translate: (props.slides.length - 1) * width,
         activeIndex: props.slides.length - 1,
-        visible: false,
       })
     }
 
@@ -128,7 +123,6 @@ const Slider = (props) => {
       ...state,
       activeIndex: activeIndex - 1,
       translate: (activeIndex - 1) * width,
-      visible: true,
     })
   }
 
@@ -136,14 +130,16 @@ const Slider = (props) => {
     <div css={SliderCSS}>
       <SliderContent
         translate={translate}
-        opacity={opacity}
         transition={transition}
         width={width * props.slides.length}
-        className={visible ? "fadeIn" : "fadeOut"}
       >
         {props.slides.map((slide, i) => {
           return (
-            <Slide key={i} content={slide}>
+            <Slide
+              key={i}
+              content={slide}
+              className={i == activeIndex ? "fadeIn" : "fadeOut"}
+            >
               <div className="banner-content-container">
                 <div className="row">
                   <BannerTextWrapper className="banner-text">
