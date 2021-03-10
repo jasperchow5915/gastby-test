@@ -7,10 +7,9 @@
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
-    "fontsource-oswald": "^4.0.0",
+    "fontsource-reem-kufi": "^4.0.0",
     "fontsource-roboto": "^4.0.0",
     "fontsource-roboto-slab": "^4.0.0",
-    "fontsource-reem-kufi": "^4.0.0",
     "formik": "^2.2.6",
     "gatsby": "^3.0.1",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
@@ -28,6 +27,7 @@
     "react-datepicker": "^3.6.0",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "sass": "^1.32.8",
     "yup": "^0.32.9"
   },
   "devDependencies": {

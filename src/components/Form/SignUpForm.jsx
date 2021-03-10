@@ -9,14 +9,10 @@ import "react-datepicker/dist/react-datepicker.css"
 
 const FormHeader = styled.div`
   position: static;
-  left: 0%;
-  right: 4.13%;
-  top: 0%;
-  bottom: 22.22%;
   font-family: Roboto Slab;
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 1.2rem;
   line-height: 28px;
   letter-spacing: 0.176471px;
   color: #333333;
@@ -27,10 +23,9 @@ const FormHeader = styled.div`
 `
 
 const formFieldCss = css`
-  width: 440px;
+  width: 100%;
   height: 56px;
   border-radius: 4px;
-
   background: linear-gradient(
       0deg,
       rgba(187, 189, 183, 0.1),
@@ -56,8 +51,8 @@ const headerInnerCss = css`
   align-items: flex-start;
   padding: 0px;
   position: static;
-  width: 436px;
-  height: 72px;
+  width: 100%;
+  height: auto;
   left: 0px;
   top: 0px;
   flex: none;
@@ -82,11 +77,9 @@ const checkboxLabelCss = css`
   font-size: 13px;
   line-height: 24px;
   margin-bottom: 8px;
-
   display: flex;
   align-items: center;
   letter-spacing: 0.065px;
-
   color: #333333;
 `
 
@@ -174,12 +167,12 @@ const SignUpForm = (props) => (
 export default SignUpForm
 
 const submitBTNCss = css`
-  width: 243px;
+  width: 49%;
   height: 40px;
   background: #bad982;
   border-color: #bad982;
   border-radius: 4px;
-  margin-right: 8px;
+  margin-right: 1%;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -189,7 +182,7 @@ const submitBTNCss = css`
   cursor: pointer;
 `
 const resetBTNCss = css`
-  width: 214px;
+  width: 49%;
   height: 40px;
   background: #35abd1;
   border-color: #35abd1;

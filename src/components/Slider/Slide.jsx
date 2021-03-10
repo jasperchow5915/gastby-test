@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react"
 
-const Slide = ({ content }) => {
+const Slide = ({ content, children }) => {
   return (
     <div
       css={css`
@@ -12,7 +12,9 @@ const Slide = ({ content }) => {
         background-repeat: no-repeat;
         background-position: center;
       `}
-    />
+    >
+      {children}
+    </div>
   )
 }
 

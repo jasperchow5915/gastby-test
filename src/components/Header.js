@@ -16,7 +16,7 @@ const Header = ({ siteTitle }) => (
           position: `absolute`,
           width: `224px`,
           height: `138px`,
-          left: `320px`,
+          left: "16.67%",
           top: `0px`,
           background: `#333333`,
           display: `flex`,
