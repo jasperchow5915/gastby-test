@@ -7,6 +7,7 @@ import DatePickerField from "./DatePickerField"
 import { SignUpSchema } from "./validation"
 import "react-datepicker/dist/react-datepicker.css"
 import { useState, useEffect } from "react"
+import axios from "axios"
 
 const FormHeader = styled.div`
   position: static;
@@ -91,7 +92,65 @@ const ButtonsWrapper = styled.div`
   margin-top: 16px;
 `
 
+const getResultMessage = (formStatus) => {
+  switch (formStatus) {
+    case "success":
+      return (
+        <div
+          css={css`
+            font-size: 15px;
+            color: rgb(31, 177, 116);
+          `}
+        >
+          Success
+        </div>
+      )
+    case "error":
+      return (
+        <div
+          css={css`
+            font-size: 15px;
+            color: red;
+          `}
+        >
+          Your form may not be submitted. Please contact our support team
+        </div>
+      )
+    default:
+      return null
+  }
+}
+
 const SignUpForm = (props) => {
+  const onFormSubmit = (values, helper) => {
+    const { errors, status, setStatus } = helper
+    if (!errors) {
+      setStatus({
+        ...status,
+        formStatus: "loading",
+      })
+      axios.post("https://formspree.io/f/mdoprrnw", values).then(
+        (response) => {
+          //setFormValue({})
+          //localStorage.removeItem("formValue")
+          setStatus({
+            ...status,
+            formStatus: "success",
+            response: response,
+            error: null,
+          })
+        },
+        (error) => {
+          setStatus({
+            ...status,
+            formStatus: "error",
+            data: null,
+            error,
+          })
+        }
+      )
+    }
+  }
   return (
     <div css={props.css}>
       <FormHeader>
@@ -108,10 +167,7 @@ const SignUpForm = (props) => {
           services: [],
         }}
         validationSchema={SignUpSchema}
-        onSubmit={async (values) => {
-          await new Promise((r) => setTimeout(r, 500))
-          alert(JSON.stringify(values, null, 2))
-        }}
+        onSubmit={onFormSubmit}
       >
         {({
           isSubmitting,
@@ -121,11 +177,9 @@ const SignUpForm = (props) => {
           values,
           errors,
           touched,
+          status,
+          setStatus,
         }) => {
-          console.log("values", values)
-          console.log("values ser", values.services)
-          console.log("can", canSubmit)
-          console.log("errors", errors)
           const [canSubmit, setCanSubmit] = useState(false)
           if (!getIn(errors, "services") && !canSubmit) {
             setCanSubmit(true)
@@ -186,8 +240,13 @@ const SignUpForm = (props) => {
                   {errors?.services}
                 </div>
               ) : null}
+              {getResultMessage(status.formStatus)}
               <ButtonsWrapper>
-                <button disabled={!canSubmit} type="submit" css={submitBTNCss}>
+                <button
+                  disabled={!canSubmit || status?.formStatus == "success"}
+                  type="submit"
+                  css={submitBTNCss}
+                >
                   SUBMIT
                 </button>
                 <button type="reset" css={resetBTNCss}>
