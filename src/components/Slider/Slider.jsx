@@ -27,10 +27,12 @@ export const BannerTextWrapper = styled.div`
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   z-index: 10;
-  @media (max-width: 1024px) {
+  right: 6%;
+  @media (max-width: 1200px) {
     font-size: 40px;
     width: 49%;
     line-height: 55px;
+    right: 0%;
   }
 `
 
@@ -41,7 +43,7 @@ export const FormOutterWrapper = styled.div`
   top: 164px;
   padding-right: 15px;
   padding-left: 15px;
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     width: 49%;
     padding-right: 10px;
     padding-left: 10px;
