@@ -8,6 +8,7 @@ import { SignUpSchema } from "./validation"
 import "react-datepicker/dist/react-datepicker.css"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { Persist } from "formik-persist"
 
 const FormHeader = styled.div`
   position: static;
@@ -240,7 +241,7 @@ const SignUpForm = (props) => {
                   {errors?.services}
                 </div>
               ) : null}
-              {getResultMessage(status.formStatus)}
+              {getResultMessage(status?.formStatus)}
               <ButtonsWrapper>
                 <button
                   disabled={!canSubmit || status?.formStatus == "success"}
@@ -253,6 +254,7 @@ const SignUpForm = (props) => {
                   RESET
                 </button>
               </ButtonsWrapper>
+              <Persist name="signup-form" />
             </Form>
           )
         }}
