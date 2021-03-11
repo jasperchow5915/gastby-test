@@ -7,55 +7,28 @@ import { Link } from "gatsby"
 import * as Logo from "../assets/svgs/logo.svg"
 import NavBar from "./Navbar/Navbar"
 
+const HeaderStripe = styled.div`
+  background: #bad982 70%;
+  height: 32px;
+  transition: height ease-in-out 0.3s;
+  @media (max-width: 767.98px) {
+    height: 10px;
+  }
+`
+
+const HeaderWrapper = styled.header`
+  background: #fff;
+  height: 57px;
+  transition: height ease-in-out 0.3s;
+  @media (max-width: 767.98px) {
+    height: 40px;
+  }
+`
+
 const Header = ({ siteTitle }) => (
   <>
-    <div
-      style={{
-        background: `#BAD982 70%`,
-        height: `32px`,
-      }}
-    >
-      {/* <div
-        style={{
-          position: `absolute`,
-          width: `224px`,
-          height: `138px`,
-          left: "16.67%",
-          top: `0px`,
-          background: `#333333`,
-          display: `flex`,
-          alignItems: `center`,
-          justifyContent: `center`,
-          zIndex: 10,
-        }}
-      >
-        <Logo />
-      </div> */}
-    </div>
-    <header
-      style={{
-        background: `#fff`,
-        height: `57px`,
-      }}
-    >
-      {/* <div
-        style={{
-          margin: `0 auto`,
-          padding: `1.45rem 1.0875rem`,
-        }}
-      >
-        <h1 style={{ margin: 0 }}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            {siteTitle}
-          </Link>
-        </h1>
-      </div> */}
+    <HeaderStripe />
+    <HeaderWrapper>
       <HeaderContainer className="container">
         <Link css={linkCss}>
           <LogoWrapper>
@@ -64,7 +37,7 @@ const Header = ({ siteTitle }) => (
         </Link>
         <NavBar></NavBar>
       </HeaderContainer>
-    </header>
+    </HeaderWrapper>
   </>
 )
 
@@ -79,6 +52,10 @@ const linkCss = css`
   text-decoration: none;
   z-index: 1;
   margin-top: -37px;
+  transition: margin ease-in-out 0.3s;
+  @media only screen and (max-width: 767.98px) {
+    margin-top: -10px;
+  }
 `
 
 const LogoWrapper = styled.div`
@@ -90,6 +67,15 @@ const LogoWrapper = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 99;
+  transition: all ease-in-out 0.3s;
+  @media only screen and (max-width: 767.98px) {
+    width: 121px;
+    height: 75px;
+    svg {
+      height: 40px;
+      transition: all ease-in-out 0.3s;
+    }
+  }
 `
 
 Header.propTypes = {

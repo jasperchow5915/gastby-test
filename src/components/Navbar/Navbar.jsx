@@ -24,6 +24,10 @@ const NavLi = styled.li`
   display: block;
   flex: 0 0 auto;
   margin-right: 100px;
+  transition: margin ease-in-out 0.3s;
+  @media (max-width: 767.98px) {
+    margin-right: 30px;
+  }
 `
 
 const NavA = styled.a`
@@ -45,6 +49,9 @@ const NavSpan = styled.span`
   align-items: center;
   letter-spacing: 1px;
   text-transform: uppercase;
+  @media (max-width: 767.98px) {
+    display: none;
+  }
 `
 
 const NavItems = (props) => (
@@ -66,6 +73,9 @@ const NavItemWrapper = styled.nav`
   display: flex;
   align-items: center;
   height: 57px;
+  @media (max-width: 767.98px) {
+    height: 40px;
+  }
 `
 
 const NavBar = () => (

@@ -1,21 +1,19 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react"
-
 import styled from "@emotion/styled"
 import { useState, useEffect, useRef } from "react"
 import SliderContent from "./SliderContent"
 import Slide from "./Slide"
-import SignUpForm from "../Form/SignUpForm"
-import "./style.scss"
 import { useWindowSize } from "../../utlis/hooks/useWindowSize"
 import Arrow from "./Arrow"
 
 const ArrowWrapper = styled.div`
   top: 82%;
   position: absolute;
-  left: 16.67%;
+  left: 23.2%;
   display: flex;
   z-index: 99;
+  transition: left ease-in-out 0.3s;
   @media (max-width: 1200px) {
     left: 25px;
   }
@@ -83,7 +81,7 @@ const Slider = (props) => {
   }, [])
 
   return (
-    <div css={SliderCSS}>
+    <div css={sliderCSS}>
       <SliderContent
         translate={translate}
         transition={transition}
@@ -112,7 +110,7 @@ Slider.defaultProps = {
   autoPlay: null,
 }
 
-const SliderCSS = css`
+const sliderCSS = css`
   position: relative;
   height: auto;
   width: 100%;

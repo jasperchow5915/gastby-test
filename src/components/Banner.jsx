@@ -21,6 +21,7 @@ export const BannerTextWrapper = styled.div`
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   z-index: 10;
+  transition: all ease-in-out 0.3s;
   @media (max-width: 1200px) {
     font-size: 40px;
     width: 49%;
@@ -35,6 +36,7 @@ export const FormOutterWrapper = styled.div`
   width: 42%;
   padding-right: 15px;
   padding-left: 15px;
+  transition: all ease-in-out 0.3s;
   @media (max-width: 1200px) {
     width: 49%;
     padding-right: 10px;
@@ -67,9 +69,9 @@ export const innerFormCss = css`
 const BannerContentWrapper = styled.div`
   position: absolute;
   top: 224px;
-  left: 16%;
+  width: 100%;
   @media (max-width: 1200px) {
-    left: 10px;
+    left: 0;
   }
 `
 
@@ -78,7 +80,7 @@ const Banner = (props) => {
     <div>
       <Slider slides={props.images} autoPlay={2} />
       <BannerContentWrapper>
-        <div className="banner-content-container">
+        <div className="container">
           <div className="row">
             <BannerTextWrapper className="banner-text">
               {props.bannerText}
