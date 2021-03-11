@@ -11,9 +11,10 @@ import { useStaticQuery, graphql } from "gatsby"
 import "fontsource-roboto"
 import "fontsource-roboto-slab"
 import "fontsource-reem-kufi"
+import "fontsource-nunito-sans"
 
 import Header from "./Header"
-import "./layout.css"
+import "./layout.scss"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

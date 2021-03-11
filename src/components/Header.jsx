@@ -1,7 +1,11 @@
-import * as React from "react"
+/** @jsx jsx */
+import React from "react"
+import { css, jsx } from "@emotion/react"
+import styled from "@emotion/styled"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import * as Logo from "../assets/svgs/logo.svg"
+import NavBar from "./Navbar/Navbar"
 
 const Header = ({ siteTitle }) => (
   <>
@@ -11,7 +15,7 @@ const Header = ({ siteTitle }) => (
         height: `32px`,
       }}
     >
-      <div
+      {/* <div
         style={{
           position: `absolute`,
           width: `224px`,
@@ -26,7 +30,7 @@ const Header = ({ siteTitle }) => (
         }}
       >
         <Logo />
-      </div>
+      </div> */}
     </div>
     <header
       style={{
@@ -34,10 +38,9 @@ const Header = ({ siteTitle }) => (
         height: `57px`,
       }}
     >
-      <div
+      {/* <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
           padding: `1.45rem 1.0875rem`,
         }}
       >
@@ -52,10 +55,42 @@ const Header = ({ siteTitle }) => (
             {siteTitle}
           </Link>
         </h1>
-      </div>
+      </div> */}
+      <HeaderContainer className="container">
+        <Link css={linkCss}>
+          <LogoWrapper>
+            <Logo />
+          </LogoWrapper>
+        </Link>
+        <NavBar></NavBar>
+      </HeaderContainer>
     </header>
   </>
 )
+
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+`
+
+const linkCss = css`
+  color: white;
+  text-decoration: none;
+  z-index: 1;
+  margin-top: -37px;
+`
+
+const LogoWrapper = styled.div`
+  width: 224px;
+  height: 138px;
+  background-color: #333333;
+  display: -moz-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+`
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
