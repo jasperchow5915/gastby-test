@@ -1,23 +1,12 @@
 /** @jsx jsx */
+import React from "react"
 import { css, jsx } from "@emotion/react"
 import styled from "@emotion/styled"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useImperativeHandle } from "react"
 import SliderContent from "./SliderContent"
 import Slide from "./Slide"
 import { useWindowSize } from "../../utlis/hooks/useWindowSize"
 import Arrow from "./Arrow"
-
-const ArrowWrapper = styled.div`
-  top: 82%;
-  position: absolute;
-  left: 23.2%;
-  display: flex;
-  z-index: 99;
-  transition: left ease-in-out 0.3s;
-  @media (max-width: 1200px) {
-    left: 25px;
-  }
-`
 
 /**
  * @function Slider
@@ -30,7 +19,6 @@ const Slider = (props) => {
     translate: 0,
     transition: 0.45,
   })
-
   const { translate, transition, activeIndex } = state
 
   const nextSlide = () => {
@@ -64,6 +52,7 @@ const Slider = (props) => {
       translate: (activeIndex - 1) * width,
     })
   }
+  props.slideActionGenerator(nextSlide, prevSlide)
 
   const autoPlayRef = useRef()
 
@@ -92,15 +81,29 @@ const Slider = (props) => {
             <Slide
               key={i}
               content={slide}
-              className={i == activeIndex ? "fadeIn" : "fadeOut"}
+              className={
+                props.enableFadeInOut
+                  ? i == activeIndex
+                    ? "fadeIn"
+                    : "fadeOut"
+                  : ""
+              }
             />
           )
         })}
       </SliderContent>
-      <ArrowWrapper>
-        <Arrow direction="left" handleClick={prevSlide} />
-        <Arrow direction="right" handleClick={nextSlide} />
-      </ArrowWrapper>
+      {!props.customArrow ? (
+        <div
+          css={css`
+            > div {
+              position: absolute;
+            }
+          `}
+        >
+          <Arrow direction="left" handleClick={prevSlide} />
+          <Arrow direction="right" handleClick={nextSlide} />
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -108,6 +111,8 @@ const Slider = (props) => {
 Slider.defaultProps = {
   slides: [],
   autoPlay: null,
+  customArrow: false,
+  enableFadeInOut: false,
 }
 
 const sliderCSS = css`

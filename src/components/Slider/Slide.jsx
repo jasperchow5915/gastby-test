@@ -12,6 +12,10 @@ const Slide = ({ content, children, className }) => {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+        transition: height ease-in-out 0.3s;
+        @media (max-width: 767.98px) {
+          height: 627px;
+        }
       `}
     >
       {children}
