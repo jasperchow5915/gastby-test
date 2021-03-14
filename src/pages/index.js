@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 import { images } from "../components/image"
 import Layout from "../components/Layout"
-import SEO from "../components/Seo"
+import SEO from "../components/Seo/Seo"
 import Banner from "../components/Banner"
 
 
