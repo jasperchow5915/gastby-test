@@ -34,17 +34,13 @@ I am also eager to hear feedback and hope to have the opportunity to meet you an
     Prerequisites: Node.js (>=12.16.0)
     Navigate into the project's root directory
 
-    ```shell
-    npm install
-    ```
+    > \$ npm install
 
 2.  **Start.**
 
     start it up.
 
-    ```shell
-    npm run develop
-    ```
+    > \$ npm run develop
 
 3.  **Browse.**
 
@@ -53,6 +49,4 @@ I am also eager to hear feedback and hope to have the opportunity to meet you an
     _Note: You'll also see a second link: _`http://localhost:8000/___graphql`\_. This is a gql tool we can use to experiment with querying data, and it would be useful if we extend this project in the futrure.
 
 4.  **Test.**
-    ```shell
-    npm run test
-    ```
+    > \$ npm run test
