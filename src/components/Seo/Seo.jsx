@@ -8,12 +8,11 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
 import { useSiteMetaData } from "./site"
 
-function SEO({ description, lang, meta, title }) {
+const SEO = (props) => {
+  const { description, lang, meta, title } = props
   const siteMeta = useSiteMetaData()
-  console.log("site meta", siteMeta)
   const metaDescription = description || siteMeta.description
   const defaultTitle = siteMeta?.title
 
