@@ -25,7 +25,7 @@ const NavLi = styled.li`
   flex: 0 0 auto;
   margin-right: 100px;
   transition: margin ease-in-out 0.3s;
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     margin-right: 30px;
   }
 `
@@ -49,7 +49,7 @@ const NavSpan = styled.span`
   align-items: center;
   letter-spacing: 1px;
   text-transform: uppercase;
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `
@@ -73,7 +73,7 @@ const NavItemWrapper = styled.nav`
   display: flex;
   align-items: center;
   height: 57px;
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     height: 40px;
   }
 `

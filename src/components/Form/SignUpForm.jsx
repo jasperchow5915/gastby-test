@@ -23,7 +23,7 @@ const FormHeader = styled.div`
   order: 0;
   flex-grow: 0;
   margin: 0px 0px;
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     font-size: 18px;
     line-height: 28px;
   }

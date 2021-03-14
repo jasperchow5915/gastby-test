@@ -33,7 +33,7 @@ export const BannerTextWrapper = styled.div`
     right: 0%;
   }
 
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     height: 575px;
     width: 100%;
   }
@@ -51,8 +51,9 @@ export const FormOutterWrapper = styled.div`
     padding-right: 10px;
     padding-left: 10px;
   }
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     width: 100%;
+    background-color: #eeeeee;
   }
 `
 
@@ -63,8 +64,9 @@ export const FormInnerWrapper = styled.div`
   border-radius: 4px;
   z-index: 10;
   padding: 40px 40px 1px 40px;
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     padding: 16px 16.67px;
+    background-color: transparent;
   }
 `
 
@@ -86,10 +88,14 @@ const BannerContentWrapper = styled.div`
   top: 224px;
   width: 100%;
   transition: top ease-in-out 0.3s;
-  @media (max-width: 1200px) {
-    left: 0;
+  @media (max-width: 1400px) {
+    top: 145px;
   }
-  @media (max-width: 767.98px) {
+
+  @media (max-width: 1200px) {
+    top: 170px;
+  }
+  @media (max-width: 768px) {
     top: 102px;
   }
 `
@@ -98,7 +104,7 @@ const BannerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -109,7 +115,7 @@ const ArrowWrapper = styled.div`
   display: flex;
   margin-top: -175px;
   transition: margin ease-in-out 0.3s;
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     margin-top: -90px;
   }
 `
@@ -152,14 +158,9 @@ const Banner = (props) => {
                 {props.bannerText}
               </BannerTextWrapper>
               <ButtonWrapper className="container">
-                <RegisterButton
-                  elementToScroll="signup-form"
-                  text="Register"
-                  //css={registerBTNCss}
-                />
+                <RegisterButton elementToScroll="signup-form" text="Register" />
               </ButtonWrapper>
             </>
-
             <FormOutterWrapper>
               <FormInnerWrapper>
                 <SignUpForm css={innerFormCss} />
