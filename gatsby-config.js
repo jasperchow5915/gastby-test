@@ -1,8 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    author: "Jasper Zhou",
+    title: "Traffic Dev Test",
+    titleTemplate: "%s · The Property CMS",
+    description:
+      "A gastby solution to traffic dev test",
+    url: "https://www.linkedin.com/in/jasper-zhou-8bbb9084/",
+    image: "/src/assets/images/eliston.png", // Path to your image you placed in the 'static' folder
+    twitterUsername: "@jasper_kwok",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -25,7 +30,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `${__dirname}/src/assets/images/eliston.png`
       },
     },
     {
