@@ -6,18 +6,19 @@ import Slider from "./Slider/Slider"
 import SignUpForm from "../components/Form/SignUpForm"
 import { useRef, createRef } from "react"
 import Arrow from "./Slider/Arrow"
+import { RegisterButton } from "./Form/Buttons"
 
 export const BannerTextWrapper = styled.div`
   position: relative;
   float: left;
   padding-right: 15px;
   padding-left: 15px;
-  width: 58%;
+  width: 52%;
   height: 480px;
   font-family: "Reem Kufi", sans-serif;
   font-style: normal;
   font-weight: 900;
-  font-size: 4.1rem;
+  font-size: 80px;
   line-height: 96px;
   letter-spacing: -1.09375px;
   text-transform: uppercase;
@@ -26,8 +27,8 @@ export const BannerTextWrapper = styled.div`
   z-index: 10;
   transition: all ease-in-out 0.3s;
   @media (max-width: 1200px) {
+    width: 52%;
     font-size: 40px;
-    width: 49%;
     line-height: 55px;
     right: 0%;
   }
@@ -41,12 +42,12 @@ export const BannerTextWrapper = styled.div`
 export const FormOutterWrapper = styled.div`
   position: relative;
   float: left;
-  width: 42%;
+  width: 40%;
   padding-right: 15px;
   padding-left: 15px;
   transition: all ease-in-out 0.3s;
   @media (max-width: 1200px) {
-    width: 49%;
+    width: 48%;
     padding-right: 10px;
     padding-left: 10px;
   }
@@ -113,6 +114,21 @@ const ArrowWrapper = styled.div`
   }
 `
 
+const ButtonWrapper = styled.div`
+  button {
+    display: none;
+    z-index: 100;
+    @media (max-width: 768px) {
+      display: flex;
+      top: 160px;
+      position: absolute;
+    }
+    @media (max-width: 600px) {
+      top: 268px;
+    }
+  }
+`
+
 const Banner = (props) => {
   const sliderRef = createRef()
   const slideActionGenerator = (nextSlide, prevSlide) => {
@@ -131,9 +147,19 @@ const Banner = (props) => {
       <BannerContentWrapper>
         <BannerContainer className="container">
           <div className="row">
-            <BannerTextWrapper className="banner-text">
-              {props.bannerText}
-            </BannerTextWrapper>
+            <>
+              <BannerTextWrapper className="banner-text">
+                {props.bannerText}
+              </BannerTextWrapper>
+              <ButtonWrapper className="container">
+                <RegisterButton
+                  elementToScroll="signup-form"
+                  text="Register"
+                  //css={registerBTNCss}
+                />
+              </ButtonWrapper>
+            </>
+
             <FormOutterWrapper>
               <FormInnerWrapper>
                 <SignUpForm css={innerFormCss} />

@@ -15,7 +15,7 @@ const FormHeader = styled.div`
   font-family: Roboto Slab;
   font-style: normal;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 24px;
   line-height: 28px;
   letter-spacing: 0.176471px;
   color: #333333;
@@ -23,6 +23,10 @@ const FormHeader = styled.div`
   order: 0;
   flex-grow: 0;
   margin: 0px 0px;
+  @media (max-width: 767.98px) {
+    font-size: 18px;
+    line-height: 28px;
+  }
 `
 
 const formFieldCss = css`
@@ -132,8 +136,6 @@ const SignUpForm = (props) => {
       })
       axios.post("https://formspree.io/f/mdoprrnw", values).then(
         (response) => {
-          //setFormValue({})
-          //localStorage.removeItem("formValue")
           setStatus({
             ...status,
             formStatus: "success",
@@ -153,7 +155,7 @@ const SignUpForm = (props) => {
     }
   }
   return (
-    <div css={props.css}>
+    <div id="signup-form" css={props.css}>
       <FormHeader>
         <p css={headerInnerCss}>
           Be thte first to register for new townhome releases for first option
@@ -170,17 +172,7 @@ const SignUpForm = (props) => {
         validationSchema={SignUpSchema}
         onSubmit={onFormSubmit}
       >
-        {({
-          isSubmitting,
-          getFieldProps,
-          handleChange,
-          handleBlur,
-          values,
-          errors,
-          touched,
-          status,
-          setStatus,
-        }) => {
+        {({ errors, status }) => {
           const [canSubmit, setCanSubmit] = useState(false)
           if (!getIn(errors, "services") && !canSubmit) {
             setCanSubmit(true)
