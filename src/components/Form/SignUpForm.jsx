@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react"
-import { Formik, Field, Form, getIn, ErrorMessage } from "formik"
+import { Formik, Field, Form, getIn } from "formik"
 import styled from "@emotion/styled"
 import { checkboxOptions } from "./constant"
 import DatePickerField from "./DatePickerField"
@@ -12,7 +12,7 @@ import { Persist } from "formik-persist"
 
 const FormHeader = styled.div`
   position: static;
-  font-family: Roboto Slab;
+  font-family: "Roboto Slab", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -22,7 +22,7 @@ const FormHeader = styled.div`
   flex: none;
   order: 0;
   flex-grow: 0;
-  margin: 0px 0px;
+  padding-bottom: 8px;
   @media (max-width: 768px) {
     font-size: 18px;
     line-height: 28px;
@@ -43,7 +43,7 @@ const formFieldCss = css`
   box-sizing: border-box;
   margin-bottom: 8px;
   padding: 16px;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -81,7 +81,7 @@ const checkboxFieldCss = css`
 `
 
 const checkboxLabelCss = css`
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
@@ -182,6 +182,7 @@ const SignUpForm = (props) => {
           return (
             <Form>
               <Field
+                key="firstName"
                 className={`form-field ${getIn(errors, "firstName") ? "error" : ""}`}
                 id="firstName"
                 name="firstName"
@@ -189,6 +190,7 @@ const SignUpForm = (props) => {
                 css={formFieldCss}
               />
               <Field
+                key="lastName"
                 className={`form-field ${getIn(errors, "lastName") ? "error" : ""}`}
                 id="lastName"
                 name="lastName"
@@ -196,6 +198,7 @@ const SignUpForm = (props) => {
                 css={formFieldCss}
               />
               <Field
+                key="email"
                 className={`form-field ${getIn(errors, "email") ? "error" : ""}`}
                 id="email"
                 name="email"
@@ -211,7 +214,7 @@ const SignUpForm = (props) => {
               />
               <div className="custom-check-box-field">
                 {checkboxOptions.map((op, i) => (
-                  <label css={checkboxLabelCss}>
+                  <label key={i} css={checkboxLabelCss}>
                     <Field
                       key={i}
                       type="checkbox"

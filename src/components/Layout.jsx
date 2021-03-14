@@ -8,10 +8,10 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import "fontsource-roboto"
-import "fontsource-roboto-slab"
-import "fontsource-reem-kufi"
-import "fontsource-nunito-sans"
+import "fontsource-roboto/400.css"
+import "fontsource-roboto-slab/400.css"
+import "fontsource-reem-kufi/400.css"
+import "fontsource-nunito-sans/400.css"
 
 import Header from "./Header"
 import "./layout.scss"
@@ -31,10 +31,10 @@ const Layout = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
-        style={{
-          margin: `0 auto`,
-          width: `100%`,
-        }}
+      // style={{
+      //   margin: `0 auto`,
+      //   width: `100%`,
+      // }}
       >
         <main>{children}</main>
       </div>

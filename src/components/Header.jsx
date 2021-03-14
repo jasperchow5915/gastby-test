@@ -4,7 +4,7 @@ import { css, jsx } from "@emotion/react"
 import styled from "@emotion/styled"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import * as Logo from "../assets/svgs/logo.svg"
+import Logo from "../assets/svgs/logo.svg"
 import NavBar from "./Navbar/Navbar"
 
 const HeaderStripe = styled.div`
@@ -30,7 +30,7 @@ const Header = ({ siteTitle }) => (
     <HeaderStripe />
     <HeaderWrapper>
       <HeaderContainer className="container">
-        <Link css={linkCss}>
+        <Link to="#" css={linkCss}>
           <LogoWrapper>
             <Logo />
           </LogoWrapper>

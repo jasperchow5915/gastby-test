@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react"
 import styled from "@emotion/styled"
@@ -42,7 +42,7 @@ export const BannerTextWrapper = styled.div`
 export const FormOutterWrapper = styled.div`
   position: relative;
   float: left;
-  width: 40%;
+  width: 38%;
   padding-right: 15px;
   padding-left: 15px;
   transition: all ease-in-out 0.3s;
@@ -63,7 +63,7 @@ export const FormInnerWrapper = styled.div`
   background: #ffffff;
   border-radius: 4px;
   z-index: 10;
-  padding: 40px 40px 1px 40px;
+  padding: 40px 40px 16px 40px;
   @media (max-width: 768px) {
     padding: 16px 16.67px;
     background-color: transparent;

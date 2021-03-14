@@ -2,7 +2,7 @@
 import React from "react"
 import { css, jsx } from "@emotion/react"
 import styled from "@emotion/styled"
-import { useState, useEffect, useRef, useImperativeHandle } from "react"
+import { useState, useEffect, useRef } from "react"
 import SliderContent from "./SliderContent"
 import Slide from "./Slide"
 import { useWindowSize } from "../../utlis/hooks/useWindowSize"
@@ -12,7 +12,7 @@ import Arrow from "./Arrow"
  * @function Slider
  */
 const Slider = (props) => {
-  const width = useWindowSize().width
+  const width = useWindowSize()?.width
 
   const [state, setState] = useState({
     activeIndex: 0,
@@ -33,7 +33,7 @@ const Slider = (props) => {
     setState({
       ...state,
       activeIndex: activeIndex + 1,
-      translate: (activeIndex + 1) * width,
+      translate: !isNaN(width) ? (activeIndex + 1) * width : undefined,
     })
   }
 
@@ -41,7 +41,7 @@ const Slider = (props) => {
     if (activeIndex === 0) {
       return setState({
         ...state,
-        translate: (props.slides.length - 1) * width,
+        translate: !isNaN(width) ? (props.slides.length - 1) * width : undefined,
         activeIndex: props.slides.length - 1,
       })
     }
@@ -49,7 +49,7 @@ const Slider = (props) => {
     setState({
       ...state,
       activeIndex: activeIndex - 1,
-      translate: (activeIndex - 1) * width,
+      translate: !isNaN(width) ? (activeIndex - 1) * width : undefined,
     })
   }
   props.slideActionGenerator(nextSlide, prevSlide)
@@ -74,7 +74,7 @@ const Slider = (props) => {
       <SliderContent
         translate={translate}
         transition={transition}
-        width={width * props.slides.length}
+        width={!isNaN(width) ? width * props.slides.length : ""}
       >
         {props.slides.map((slide, i) => {
           return (
