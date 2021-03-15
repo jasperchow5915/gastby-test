@@ -118,7 +118,7 @@ const getResultMessage = (formStatus) => {
             color: red;
           `}
         >
-          Your form may not be submitted. Please contact our support team
+          Your form may not be submitted. Please contact our support team.
         </div>
       )
     default:

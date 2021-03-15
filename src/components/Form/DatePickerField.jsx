@@ -4,6 +4,8 @@ import styled from "@emotion/styled"
 import { useField, useFormikContext } from "formik"
 import DatePicker from "react-datepicker"
 import ArrowDown from "../../assets/svgs/arrow-down-desktop.svg"
+import ArrowDownMobile from "../../assets/svgs/arrow-down-mobile.svg"
+import { useWindowSize } from "../../utlis/hooks/useWindowSize"
 
 const ArrowWrapper = styled.div`
   border: none;
@@ -17,6 +19,9 @@ const DatePickerWrapper = styled.div`
   display: inline;
   position: relative;
 `
+
+const ArrowDownFactory = (props) =>
+  props.screenWidth <= 768 ? <ArrowDownMobile /> : <ArrowDown />
 
 const DatePickerField = ({ ...props }) => {
   const { setFieldValue } = useFormikContext()
@@ -36,7 +41,7 @@ const DatePickerField = ({ ...props }) => {
             style={{ width: "100%" }}
           />
           <ArrowWrapper>
-            <ArrowDown />
+            <ArrowDownFactory screenWidth={useWindowSize()?.width} />
           </ArrowWrapper>
         </DatePickerWrapper>
       </label>
