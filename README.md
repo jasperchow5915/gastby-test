@@ -4,11 +4,6 @@ This little project ships with Gatsby configuration is a React-based, GraphQL po
 
 Using Gatsby is because it is fully extensible. Complimenting headless CMS like Headless WordPress and Grav, it can be used with any static site generator to construct a faster and flexible web app.
 
-## Thoughts
-
-I enjoyed developing the solution to this coding challenge.
-I am also eager to hear feedback and hope to have the opportunity to meet you and your team in the future.
-
 ## 🚀 Quick start
 
 1.  **Install.**
